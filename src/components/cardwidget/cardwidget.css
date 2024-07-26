@@ -1,0 +1,16 @@
+.shopping-cart-icon {
+    font-size: 24px;
+    color: #000000;
+    margin-right: 10px;
+}
+
+.quantity {
+    font-size: 18px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+}
