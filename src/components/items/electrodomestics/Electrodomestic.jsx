@@ -1,8 +1,8 @@
 const Electrodomestic = () => {
     return (
-        <>
-        <h1>Electrodomesticos component</h1>
-        </>
+        <div className="alert alert-danger" role="alert">
+            Seccion electrodomesticos aun no terminada
+        </div>
     )
 }
 

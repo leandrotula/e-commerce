@@ -10,9 +10,9 @@ const Navbar = () => {
                     <a href="#" className="navbar-logo">CBA-VENDE</a>
                     <div className="navbar-links">
                         <Link to={"/"}>Inicio</Link>
-                        <Link to={"Autos"}>Autos</Link>
-                        <Link to={"Electrodomesticos"}>Electrodomesticos</Link>
-                        <Link to={"Electrodomesticos"}>Contacto</Link>
+                        <Link to={"autos"}>Autos</Link>
+                        <Link to={"electrodomesticos"}>Electrodomesticos</Link>
+                        <Link to={"contacto"}>Contacto</Link>
                     </div>
                 </div>
                 <CardWidget></CardWidget>

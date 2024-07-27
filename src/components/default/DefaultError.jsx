@@ -1,8 +1,8 @@
 const DefaultError = () => {
     return (
-        <>
-            <h1>DEFAULT ERROR PAGE</h1>
-        </>
+        <div className="alert alert-danger" role="alert">
+            Pagina no existente
+        </div>
     )
 }
 
