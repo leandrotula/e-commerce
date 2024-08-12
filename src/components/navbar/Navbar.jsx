@@ -12,7 +12,7 @@ const Navbar = () => {
                         <Link to={"/"}>Inicio</Link>
                         <Link to={"autos"}>Autos</Link>
                         <Link to={"electrodomesticos"}>Electrodomesticos</Link>
-                        <Link to={"contacto"}>Contacto</Link>
+                        <Link to={"compra"}>Detalle compra</Link>
                     </div>
                 </div>
                 <CardWidget></CardWidget>
