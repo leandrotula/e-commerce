@@ -7,12 +7,11 @@ const Navbar = () => {
         <>
             <nav className="navbar">
                 <div className="navbar-container">
-                    <a href="#" className="navbar-logo">CBA-VENDE</a>
+                    <a href="#" className="navbar-logo">CORDOBA-VENDE</a>
                     <div className="navbar-links">
                         <Link to={"/"}>Inicio</Link>
-                        <Link to={"autos"}>Autos</Link>
-                        <Link to={"electrodomesticos"}>Electrodomesticos</Link>
-                        <Link to={"contacto"}>Contacto</Link>
+                        <Link to={"autos"}>Repuestos autos</Link>
+                        <Link to={"compra"}>Detalle compra</Link>
                     </div>
                 </div>
                 <CardWidget></CardWidget>

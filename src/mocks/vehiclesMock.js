@@ -1,23 +1,45 @@
 const cars = [
     {
         id: 1,
-        name: 'Renault 12',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/c/c7/R12TL.JPG'
+        name: 'Ruedas Pirrelli',
+        image: 'https://http2.mlstatic.com/D_NQ_NP_2X_923978-MLU78441671871_082024-F.webp',
+        quantity: 0,
+        price: 241.140
     },
     {
         id: 2,
-        name: 'Chevrolet Corsa',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Corsa_sport_2004.jpg/600px-Corsa_sport_2004.jpg'
+        name: 'Taza de rueda Chevrolet Corsa Rodado 13',
+        image: 'https://http2.mlstatic.com/D_NQ_NP_2X_602686-MLA31991516064_082019-F.webp',
+        quantity: 0,
+        price: 9.190
     },
     {
         id: 3,
-        name: 'Jeep Compass',
-        image: 'https://cdn.motor1.com/images/mgl/Qj1r1/s1/critica-jeep-compass-t270-limited-2022.webp'
+        name: 'Neumatico Fate Maxisport 2',
+        image: 'https://http2.mlstatic.com/D_NQ_NP_2X_810954-MLU69607883350_052023-F.webp',
+        quantity: 0,
+        price: 124.157
     },
     {
         id: 4,
-        name: 'Fiat Uno',
-        image: 'https://autotest.com.ar/wp-content/uploads/2024/04/Fiat-Uno-SCR-0km-frente-1.jpg'
+        name: 'Paragolpe Vw Fox Suran 2010 2011 2013 2014 + Parrillas',
+        image: 'https://http2.mlstatic.com/D_NQ_NP_2X_960003-MLA75078931987_032024-F.webp',
+        quantity: 0,
+        price: 95.738
+    },
+    {
+        id: 5,
+        name: 'Retrovisor Izquierdo Jeep Compass',
+        image: 'https://http2.mlstatic.com/D_NQ_NP_2X_982854-MLA70863655427_082023-F.webp',
+        quantity: 0,
+        price: 209.738
+    },
+    {
+        id: 6,
+        name: 'Cubre Coche Auto Antigranizo Impermeable Premium Silver Talle Talle L',
+        image: 'https://http2.mlstatic.com/D_NQ_NP_2X_667092-MLU78232471924_082024-F.webp',
+        quantity: 0,
+        price: 73.332
     },
 ];
 
