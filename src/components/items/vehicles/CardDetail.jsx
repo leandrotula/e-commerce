@@ -17,6 +17,8 @@ const CartDetail = () => {
     const {id} = useParams();
     const dispatch = useDispatch()
     const itemToShow = useSelector((state) => state.cart.currentItem);
+    const loadingState = useSelector((state) => state.cart.operationState);
+
 
     function add() {
         return () => {
@@ -40,6 +42,8 @@ const CartDetail = () => {
                     dispatch(setCurrentItem(foundItem));
                     dispatch(updateOperationState('ok'));
                 } else {
+                    dispatch(updateOperationState('loading'));
+
                     console.log("No se actualiza estado");
                 }
             })
@@ -53,8 +57,10 @@ const CartDetail = () => {
             <div className="card-body">
                 <h5 className="card-title">{itemToShow.name}</h5>
             </div>
+            {loadingState !== "ok" && <p>CARGANDO.......</p>}
             {itemToShow && <p>Cantidad en carrito: {itemToShow.quantity}</p>}
-            {itemToShow && <p>precio total: {itemToShow.price}</p>}
+            {itemToShow && <p>precio total: $ {itemToShow.total_price && itemToShow.total_price.toFixed(2)}</p>}
+            {itemToShow && <p>precio por unidad: $ {itemToShow.price}</p>}
             <button className="btn btn-primary" onClick={add()}>+</button>
             <button className="btn btn-danger" onClick={remove()}>-</button>
 

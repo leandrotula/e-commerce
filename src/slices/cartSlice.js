@@ -18,22 +18,27 @@ export const cartSlice = createSlice({
                 state.items[itemIndex] = {
                     ...state.items[itemIndex],
                     quantity: state.items[itemIndex].quantity + 1,
+                    total_price: (state.items[itemIndex].quantity + 1) * state.items[itemIndex].price
                 };
                 state.currentItem = {...state.items[itemIndex]};
             } else {
-                state.items.push({...action.payload, quantity: 1});
+                state.items.push({...action.payload, quantity: 0});
             }
         },
         removeItem: (state, action) => {
             const itemFound = state.items.find(item => item.id === action.payload.id);
             if (itemFound && itemFound.quantity > 0) {
                 itemFound.quantity--;
+                if (itemFound.quantity === 1) {
+                    itemFound.total_price = itemFound.price
+                }
+                itemFound.total_price = itemFound.quantity * itemFound.price;
                 state.currentItem = itemFound;
             }
         },
         setCurrentItem: (state, action) => {
-            state.currentItem = {...action.payload, quantity: 1};
-            state.items.push(state.currentItem);
+            state.currentItem = {...action.payload, quantity: 0};
+            //state.items.push(state.currentItem);
         },
         updateOperationState: (state, action) => {
             state.operationState = action.payload;
