@@ -6,11 +6,11 @@ const fetchCartItems = async () => {
     return data.docs.map((doc) => {
         const docData = doc.data();
         return {
-            id: doc.id, // this is the document ID
-            name: docData.name, // accessing `name` field
-            image: docData.image, // accessing `image` field
-            price: docData.price, // accessing `price` field
-            quantity: docData.quantity // accessing `quantity field`
+            id: doc.id,
+            name: docData.name,
+            image: docData.image,
+            price: docData.price,
+            quantity: docData.quantity
         }
     });
 }
