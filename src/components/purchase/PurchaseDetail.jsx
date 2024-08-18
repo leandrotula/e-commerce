@@ -1,5 +1,6 @@
 import {useSelector} from "react-redux";
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const PurchaseDetail = () => {
     const itemsCart = useSelector((state) => state.cart.items)
@@ -21,14 +22,17 @@ const PurchaseDetail = () => {
                 <tbody>
                 {itemsCart.map(product => (
                     <tr key={product.id}>
-                        <td>
-                            <img src={product.image} alt={product.name} width="100" />
-                        </td>
+                        <Link to={`/autos/${product.id}`}>
+                            <td>
+                                <img src={product.image} alt={product.name} width="100"/>
+                            </td>
+                        </Link>
                         <td>{product.name}</td>
                         <td>${product.price.toFixed(2)}</td>
                         <td>{product.quantity}</td>
                         <td>${product.total_price.toFixed(2)}</td>
                     </tr>
+
                 ))}
                 </tbody>
             </table>

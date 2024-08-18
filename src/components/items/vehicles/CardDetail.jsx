@@ -17,6 +17,7 @@ const CartDetail = () => {
     const {id} = useParams();
     const dispatch = useDispatch()
     const itemToShow = useSelector((state) => state.cart.currentItem);
+    const allItems = useSelector((state) => state.cart.items);
     const loadingState = useSelector((state) => state.cart.operationState);
 
 
@@ -38,14 +39,21 @@ const CartDetail = () => {
         getItems()
             .then((it) => {
                 const foundItem = it.find((product) => parseInt(product.id) === parseInt(id));
-                if (foundItem) {
-                    dispatch(setCurrentItem(foundItem));
-                    dispatch(updateOperationState('ok'));
-                } else {
-                    dispatch(updateOperationState('loading'));
+                const alreadyThere = allItems.find((it) => parseInt(it.id) === parseInt(foundItem.id));
+                if (!alreadyThere) {
+                    if (foundItem) {
+                        dispatch(setCurrentItem(foundItem));
+                        dispatch(updateOperationState('ok'));
+                    } else {
+                        dispatch(updateOperationState('loading'));
 
-                    console.log("No se actualiza estado");
+                        console.log("No se actualiza estado");
+                    }
+                } else {
+                    dispatch(setCurrentItem(alreadyThere));
+                    dispatch(updateOperationState('ok'));
                 }
+
             })
             .catch(console.error);
     }, []);
@@ -59,8 +67,8 @@ const CartDetail = () => {
             </div>
             {loadingState !== "ok" && <p>CARGANDO.......</p>}
             {itemToShow && <p>Cantidad en carrito: {itemToShow.quantity}</p>}
-            {itemToShow && <p>precio total: $ {itemToShow.total_price && itemToShow.total_price.toFixed(2)}</p>}
-            {itemToShow && <p>precio por unidad: $ {itemToShow.price}</p>}
+            {itemToShow && <p>Precio total: $ {itemToShow.total_price && itemToShow.total_price.toFixed(2)}</p>}
+            {itemToShow && <p>Precio por unidad: $ {itemToShow.price && itemToShow.price.toFixed(2)}</p>}
             <button className="btn btn-primary" onClick={add()}>+</button>
             <button className="btn btn-danger" onClick={remove()}>-</button>
 
