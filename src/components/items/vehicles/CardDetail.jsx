@@ -66,11 +66,11 @@ const CartDetail = () => {
                 <h5 className="card-title">{itemToShow.name}</h5>
             </div>
             {loadingState !== "ok" && <p>CARGANDO.......</p>}
-            {itemToShow && <p>Cantidad en carrito: {itemToShow.quantity}</p>}
-            {itemToShow && <p>Precio total: $ {itemToShow.total_price && itemToShow.total_price.toFixed(2)}</p>}
-            {itemToShow && <p>Precio por unidad: $ {itemToShow.price && itemToShow.price.toFixed(2)}</p>}
-            <button className="btn btn-primary" onClick={add()}>+</button>
-            <button className="btn btn-danger" onClick={remove()}>-</button>
+            {loadingState === "ok" && <p>Cantidad en carrito: {itemToShow.quantity}</p>}
+            {loadingState === "ok" && <p>Precio total: $ {itemToShow.total_price && itemToShow.total_price.toFixed(2)}</p>}
+            {loadingState === "ok" && <p>Precio por unidad: $ {itemToShow.price && itemToShow.price.toFixed(2)}</p>}
+            <button className="btn btn-primary" disabled={loadingState !== 'ok'} onClick={add()}>+</button>
+            <button className="btn btn-danger" disabled={loadingState !== 'ok'} onClick={remove()}>-</button>
 
         </div>
     )
