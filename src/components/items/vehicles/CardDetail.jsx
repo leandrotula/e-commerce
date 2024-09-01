@@ -1,14 +1,14 @@
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, removeItem, setCurrentItem, updateOperationState} from "../../../slices/cartSlice.js";
-import fetchCartItems from "../../../service/cartItemsService.js";
+import getAllItems from "../../../service/cartItemsService.js";
 import {useEffect} from "react";
 
 const CartDetail = () => {
 
     const getItems = async () => {
         try {
-            return await fetchCartItems()
+            return await getAllItems()
         } catch (error) {
             console.error("Error fetching items: ", error);
         }
@@ -46,8 +46,6 @@ const CartDetail = () => {
                         dispatch(updateOperationState('ok'));
                     } else {
                         dispatch(updateOperationState('loading'));
-
-                        console.log("No se actualiza estado");
                     }
                 } else {
                     dispatch(setCurrentItem(alreadyThere));
@@ -56,7 +54,7 @@ const CartDetail = () => {
 
             })
             .catch(console.error);
-    }, []);
+    }, [allItems, dispatch, id]);
 
 
     return (

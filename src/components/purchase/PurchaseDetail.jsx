@@ -1,6 +1,6 @@
 import {useSelector} from "react-redux";
-import React from 'react';
 import {Link} from "react-router-dom";
+import {updateById} from "../../service/cartItemsService.js";
 
 const PurchaseDetail = () => {
     const itemsCart = useSelector((state) => state.cart.items)
@@ -8,7 +8,7 @@ const PurchaseDetail = () => {
 
     return (
         <div className="container mt-4">
-            <h2 className="mb-4">Detalle de tu compra</h2>
+            <h2 className="mb-4">Carrito de compra</h2>
             <table className="table table-striped">
                 <thead>
                 <tr>
@@ -20,7 +20,7 @@ const PurchaseDetail = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {itemsCart.map(product => (
+                {itemsCart.filter(product => product.quantity > 0).map(product => (
                     <tr key={product.id}>
                         <Link to={`/autos/${product.id}`}>
                             <td>
@@ -32,13 +32,24 @@ const PurchaseDetail = () => {
                         <td>{product.quantity}</td>
                         <td>${product.total_price.toFixed(2)}</td>
                     </tr>
-
                 ))}
                 </tbody>
             </table>
             <div className="text-right mt-4">
                 <h4>Total a pagar: ${totalFinal}</h4>
             </div>
+            <button
+                className="btn btn-outline-primary"
+                onClick={() => itemsCart.length > 0 && itemsCart.forEach(it => {
+                    updateById(it.id,{
+                        itemId: it.id,
+                        totalPrice: it.total_price,
+                    }).then(r => r)
+                        .catch(console.error);
+                })}
+            >
+                COMPRAR
+            </button>
         </div>
     );
 };

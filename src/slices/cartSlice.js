@@ -45,9 +45,19 @@ export const cartSlice = createSlice({
         setErrorState: (state, action) => {
             state.operationState = 'error';
             state.error = action.payload;
+        },
+        setAllItems: (state, action) => {
+            state.items = action.payload;
         }
     }
 })
 
-export const { addToCart, removeItem, decrementQuantity, setCurrentItem, updateOperationState, setErrorState } = cartSlice.actions
+export const
+    {
+        addToCart,
+        removeItem, decrementQuantity,
+        setCurrentItem,
+        updateOperationState, setAllItems
+    } = cartSlice.actions
+
 export default cartSlice.reducer
