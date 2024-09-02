@@ -2,16 +2,16 @@ import VehicleItem from "./VehicleItem.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import getAllItems from "../../../service/cartItemsService.js";
 import {useEffect} from "react";
-import {setAllItems} from "../../../slices/cartSlice.js";
+import {setItemsForView} from "../../../slices/cartSlice.js";
 
 const Vehicles = () => {
 
-    const cars = useSelector((state) => state.cart.items);
+    const cars = useSelector((state) => state.cart.itemsInView);
     const dispatch = useDispatch()
 
     useEffect(() => {
             getAllItems().then((response) => {
-                dispatch(setAllItems(response));
+                dispatch(setItemsForView(response));
             })
         },
         [])

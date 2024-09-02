@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     items: [],
+    itemsInView: [],
     currentItem: {},
     operationState: 'loading'
 }
@@ -22,7 +23,7 @@ export const cartSlice = createSlice({
                 };
                 state.currentItem = {...state.items[itemIndex]};
             } else {
-                state.items.push({...action.payload, quantity: 0});
+                state.items.push({...action.payload, quantity: 1});
             }
         },
         removeItem: (state, action) => {
@@ -48,6 +49,9 @@ export const cartSlice = createSlice({
         },
         setAllItems: (state, action) => {
             state.items = action.payload;
+        },
+        setItemsForView: (state, action) => {
+            state.itemsInView = action.payload;
         }
     }
 })
@@ -57,7 +61,9 @@ export const
         addToCart,
         removeItem, decrementQuantity,
         setCurrentItem,
-        updateOperationState, setAllItems
+        updateOperationState,
+        setAllItems,
+        setItemsForView
     } = cartSlice.actions
 
 export default cartSlice.reducer
