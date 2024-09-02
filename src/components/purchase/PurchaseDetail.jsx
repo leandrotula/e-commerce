@@ -5,7 +5,7 @@ import FormPaymentClient from "../formPayment/FormPaymentClient.jsx";
 
 const PurchaseDetail = () => {
     const itemsCart = useSelector((state) => state.cart.items)
-    const totalFinal = itemsCart.reduce((acc, product) => acc + product.total_price, 0).toFixed(2);
+    const totalFinal = itemsCart.reduce((acc, product) => acc + (product.total_price ? product.total_price : 0), 0).toFixed(2);
     const [showPaymentForm, setShowPaymentForm] = useState(false)
 
 

@@ -1,4 +1,4 @@
-import {collection, getDocs, addDoc, doc, setDoc} from "firebase/firestore";
+import {collection, getDocs, doc, setDoc, getDoc} from "firebase/firestore";
 import {db} from '../configuration/firebase.js';
 
 const getAllItems = async () => {
@@ -15,14 +15,6 @@ const getAllItems = async () => {
     });
 }
 
-export const persistPurchaseOrder =  (order) => {
-    const purchaseCollection = collection(db, "purchase_order");
-    return addDoc(purchaseCollection, {
-        itemId: order.itemId,
-        totalPrice: order.totalPrice,
-    });
-}
-
 export const updateById = async (id, updatedData, merge = true) => {
     const docRef = doc(db, "purchase_orders", id);
 
@@ -32,6 +24,24 @@ export const updateById = async (id, updatedData, merge = true) => {
         console.error("Error al actualizar el documento: ", error);
     }
 }
+
+export const getItemById = async (id) => {
+    const docRef = doc(db, 'cart_items', id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        const dataFound = docSnap.data();
+        return {
+            id: id,
+            name: dataFound.name,
+            image: dataFound.image,
+            price: dataFound.price,
+            quantity: dataFound.quantity
+        }
+    } else {
+        throw new Error('No such document!');
+    }
+};
 
 export default getAllItems;
 

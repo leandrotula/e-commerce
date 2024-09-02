@@ -1,18 +1,10 @@
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, removeItem, setCurrentItem, updateOperationState} from "../../../slices/cartSlice.js";
-import getAllItems from "../../../service/cartItemsService.js";
+import {getItemById} from "../../../service/cartItemsService.js";
 import {useEffect} from "react";
 
 const CartDetail = () => {
-
-    const getItems = async () => {
-        try {
-            return await getAllItems()
-        } catch (error) {
-            console.error("Error fetching items: ", error);
-        }
-    }
 
     const {id} = useParams();
     const dispatch = useDispatch()
@@ -36,13 +28,13 @@ const CartDetail = () => {
     }
 
     useEffect(() => {
-        getItems()
-            .then((it) => {
-                const foundItem = it.find((product) => parseInt(product.id) === parseInt(id));
-                const alreadyThere = allItems.find((it) => parseInt(it.id) === parseInt(foundItem.id));
+        getItemById(id)
+            .then((found) => {
+                dispatch(setCurrentItem(found));
+                const alreadyThere = allItems.find((it) => parseInt(it.id) === parseInt(found.id));
                 if (!alreadyThere) {
-                    if (foundItem) {
-                        dispatch(setCurrentItem(foundItem));
+                    if (found) {
+                        dispatch(setCurrentItem(found));
                         dispatch(updateOperationState('ok'));
                     } else {
                         dispatch(updateOperationState('loading'));
@@ -55,7 +47,6 @@ const CartDetail = () => {
             })
             .catch(console.error);
     }, [allItems, dispatch, id]);
-
 
     return (
         <div className="col-md-4">

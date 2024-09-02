@@ -37,7 +37,7 @@ export const cartSlice = createSlice({
             }
         },
         setCurrentItem: (state, action) => {
-            state.currentItem = {...action.payload, quantity: action.payload.quantity};
+            state.currentItem = {...action.payload, quantity: action.payload.quantity, total_price: action.payload.total_price};
         },
         updateOperationState: (state, action) => {
             state.operationState = action.payload;

@@ -78,7 +78,7 @@ const FormPayment = () => {
         <form onSubmit={handleSubmit} className="container mt-5">
             <div className="mb-3">
                 <label htmlFor="credit_card_number" className="form-label">Número Tarjeta de Crédito:</label>
-                <input type="number" className="form-control" id="credit_card_number" name="creditCardNumber" placeholder="Ingresa solo números" value={formValues.creditCardNumber} onChange={handleChange} />
+                <input type="number" className="form-control" pattern="\d{16}" id="credit_card_number" maxLength={16} name="creditCardNumber" placeholder="Ingresa solo números" value={formValues.creditCardNumber} onChange={handleChange} />
             </div>
             <div className="mb-3">
                 <label htmlFor="credit_card_code" className="form-label">Codigo de seguridad:</label>
