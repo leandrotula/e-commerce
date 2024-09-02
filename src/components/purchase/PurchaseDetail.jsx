@@ -1,10 +1,17 @@
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {updateById} from "../../service/cartItemsService.js";
+import {useState} from "react";
+import FormPaymentClient from "../formPayment/FormPaymentClient.jsx";
 
 const PurchaseDetail = () => {
     const itemsCart = useSelector((state) => state.cart.items)
     const totalFinal = itemsCart.reduce((acc, product) => acc + product.total_price, 0).toFixed(2);
+    const [showPaymentForm, setShowPaymentForm] = useState(false)
+
+
+    const handleForm = () => {
+        setShowPaymentForm(true);
+    };
 
     return (
         <div className="container mt-4">
@@ -38,18 +45,10 @@ const PurchaseDetail = () => {
             <div className="text-right mt-4">
                 <h4>Total a pagar: ${totalFinal}</h4>
             </div>
-            <button
-                className="btn btn-outline-primary"
-                onClick={() => itemsCart.length > 0 && itemsCart.forEach(it => {
-                    updateById(it.id,{
-                        itemId: it.id,
-                        totalPrice: it.total_price,
-                    }).then(r => r)
-                        .catch(console.error);
-                })}
-            >
-                COMPRAR
-            </button>
+            <div className="text-right mt-4">
+                <button className="btn btn-outline-primary" onClick={handleForm}>COMPRAR</button>
+                {itemsCart.length > 0 && showPaymentForm && <FormPaymentClient/>}
+            </div>
         </div>
     );
 };
